@@ -1,13 +1,8 @@
 # user class
 
 class User:
-    def __init__(self):
-        self.userID = ''
-        self.loggedIn = False
-        self.databaseName = ''
-        self.tableName = ''
     
-    def __init__(self, databaseName, tableName):
+    def __init__(self, databaseName=None, tableName=None):
         self.userID = ''
         self.loggedIn = False
         self.databaseName = databaseName
