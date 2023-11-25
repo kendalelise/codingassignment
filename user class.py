@@ -28,8 +28,17 @@ class User:
             print("Please log in to view account information.")
     
     def createAcc(self):
-        
-        pass
+        user_accounts = {}
+        username = input("Enter a username: ")
+        password = input("Enter a password: ")
+
+        if username in user_accounts:
+            print("Username already exists. Please choose another one.")
+            return
+
+        user_accounts[username] = password
+
+        print("Account created successfully!")
     
     def getLoggedIn(self):
         return self.loggedIn
