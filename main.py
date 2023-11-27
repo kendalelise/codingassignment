@@ -1,13 +1,14 @@
 import cart
 import inventory
 import userClass
+import connectTest
 
-userClass = userClass.User()
-inventory = inventory.Inventory()
 cart = cart.Cart()
+inventory = inventory.Inventory()
+userClass = userClass.User()
 
 #main
-def main():
+if __name__ == "__main__":
     while True:
         print("\nMain Menu:")
         print("1. Login")
@@ -25,7 +26,6 @@ def main():
         else:
             print("Invalid option. Please enter a valid option.")
             continue
-        # print(choice)
 
         # Main menu after login
         while True:
@@ -93,6 +93,3 @@ def main():
             else:
                 print("Invalid option. Please enter a valid option.")
                 continue
-
-if __name__ == "__main__":
-    main()
