@@ -1,3 +1,11 @@
+import cart
+import inventory
+import userClass
+
+userClass = userClass.User()
+inventory = inventory.Inventory()
+cart = cart.Cart()
+
 #main
 def main():
     while True:
@@ -8,14 +16,16 @@ def main():
         choice = input("Enter your choice (1-3): ")
 
         if choice == "1":
-            login()
+            userClass.login()
         elif choice == "2":
-            createAcc()
+            userClass.createAcc()
         elif choice == "3":
             print("Exiting the program. Goodbye!")
             break
         else:
             print("Invalid option. Please enter a valid option.")
+            continue
+        # print(choice)
 
         # Main menu after login
         while True:
@@ -28,10 +38,10 @@ def main():
             choice = input("Enter your choice (1-5): ")
 
             if choice == "1":
-                logout()
+                userClass.logout()
                 break
             elif choice == "2":
-                viewAccInfo()
+                userClass.viewAccInfo()
             elif choice == "3":
                 # Inventory Information
                 while True:
@@ -44,11 +54,14 @@ def main():
                     if choice == "1":
                         break
                     elif choice == "2":
-                        view_inventory()
+                        print("view inventory")
+                        # view_inventory()
                     elif choice == "3":
-                        search_inventory()
+                        print("search inventory")
+                        # search_inventory()
                     else:
                         print("Invalid option. Please enter a valid option.")
+                        continue
 
             elif choice == "4":
                 # Cart Information
@@ -64,17 +77,22 @@ def main():
                     if choice == "1":
                         break
                     elif choice == "2":
-                        view_cart()
+                        cart.view_cart()
                     elif choice == "3":
-                        add_to_cart()
+                        cart.add_to_cart()
                     elif choice == "4":
-                        remove_from_cart()
+                        cart.remove_from_cart()
                     elif choice == "5":
-                        check_out()
+                        cart.check_out()
                     else:
                         print("Invalid option. Please enter a valid option.")
+                        continue
 
             elif choice == "5":
                 break
             else:
                 print("Invalid option. Please enter a valid option.")
+                continue
+
+if __name__ == "__main__":
+    main()
