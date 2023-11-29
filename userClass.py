@@ -57,6 +57,7 @@ class User:
                 print(f"City: {user_data[7]}")
                 print(f"State: {user_data[8]}")
                 print(f"Zip: {user_data[9]}")
+                print(f"Payment: {user_data[10]}")
                 
             else:
                 print("User not found.")
@@ -76,10 +77,11 @@ class User:
             new_city = input("Enter your city: ")
             new_state = input("Enter your state: ")
             new_zip = input("Enter your zip code: ")
+            new_payment = input("Enter your payment method: ")
 
             conn = self.connectDB()
-            query = f"INSERT INTO {self.tableName} (Username, Email, Password, FirstName, LastName, Address, City, State, Zip) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
-            conn.execute(query, (new_username, new_email, new_password, new_first_name, new_last_name, new_address, new_city, new_state, new_zip))
+            query = f"INSERT INTO {self.tableName} (Username, Email, Password, FirstName, LastName, Address, City, State, Zip, Payment) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            conn.execute(query, (new_username, new_email, new_password, new_first_name, new_last_name, new_address, new_city, new_state, new_zip, new_payment))
             conn.commit()
 
             # Retrieve the last inserted row id (UserID)

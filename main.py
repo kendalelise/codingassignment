@@ -21,7 +21,9 @@ if __name__ == "__main__":
         choice = input("Enter your choice (1-3): ")
 
         if choice == "1":
-            User.login()
+            loginSuccess = User.login()
+            if not loginSuccess:
+                continue
         elif choice == "2":
             User.createAcc()
         elif choice == "3":
@@ -58,11 +60,10 @@ if __name__ == "__main__":
                     if choice == "1":
                         break
                     elif choice == "2":
-                        print("view inventory")
-                        # view_inventory()
+                        Inventory.viewInventory()
                     elif choice == "3":
-                        print("search inventory")
-                        # search_inventory()
+                        title = input("Enter the title name you want to search: ")
+                        Inventory.searchInventory(title)
                     else:
                         print("Invalid option. Please enter a valid option.")
                         continue
@@ -81,13 +82,15 @@ if __name__ == "__main__":
                     if choice == "1":
                         break
                     elif choice == "2":
-                        Cart.view_cart()
+                        Cart.viewCart(User.getUserID())
                     elif choice == "3":
-                        Cart.add_to_cart()
+                        ISBN = input("Enter the ISBN to add to cart: ")
+                        Cart.addToCart(User.getUserID(), ISBN)
                     elif choice == "4":
-                        Cart.remove_from_cart()
+                        ISBN = input("Enter the ISBN to remove to cart: ")
+                        Cart.removeFromCart(User.getUserID(), ISBN)
                     elif choice == "5":
-                        Cart.check_out()
+                        Cart.checkOut(User.getUserID())
                     else:
                         print("Invalid option. Please enter a valid option.")
                         continue
