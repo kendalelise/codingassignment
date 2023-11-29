@@ -1,23 +1,13 @@
 class Inventory:
-    def __init__(self, cost=0.0, description="", units=0):
-        self._cost = cost
-        self._description = description
-        self._units = units
+    def __init__(self, databaseName="", tableName=""):
+        self.databaseName = databaseName
+        self.tableName = tableName
 
-    def cost(self):
-        return self._cost
+    def viewInventory(self):
+        print(f"Viewing inventory from database '{self.databaseName}' and table '{self.tableName}'")
 
-    def description(self):
-        return self._description
+    def searchInventory(self):
+        print("Searching inventory")
 
-    def units(self):
-        return self._units
-    
-    def cost(self, cost):
-        self._cost = cost
-
-    def description(self, description):
-        self._description = description
-
-    def units(self, units):
-        self._units = units
+    def decreaseStock(self, ISBN):
+        print(f"Decreasing stock for ISBN '{ISBN}'")
