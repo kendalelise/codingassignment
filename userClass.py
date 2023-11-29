@@ -12,11 +12,11 @@ class User:
         return sqlite3.connect(self.databaseName)
     
     def login(self):
-        email = input("Email: ")
+        username = input("Username: ")
         password = input("Password: ")
         conn = self.connectDB()
         cur = conn.cursor()
-        cur.execute(f"SELECT UserID FROM {self.tableName} WHERE Email = ? AND Password = ?", (email, password))
+        cur.execute(f"SELECT UserID FROM {self.tableName} WHERE Username = ? AND Password = ?", (username, password))
         user = cur.fetchone()
         conn.close()
 
@@ -24,7 +24,8 @@ class User:
             self.userID = user[0]
             self.loggedIn = True
             return True
-        return False
+        else:
+            print("Error: incorrect password or username.")
 
     
     def logout(self):
@@ -39,7 +40,7 @@ class User:
     
     def viewAccInfo(self):
         if self.loggedIn:
-            conn = self.connect_to_db()
+            conn = self.connectDB()
             query = f"SELECT * FROM {self.tableName} WHERE UserID = ?"
             cursor = conn.execute(query, (self.userID,))
             user_data = cursor.fetchone()
@@ -48,13 +49,15 @@ class User:
 
             if user_data:
                 print(f"Viewing account information for user {self.userID}:")
-                print(f"Email: {user_data[1]}")
-                print(f"First Name: {user_data[3]}")
-                print(f"Last Name: {user_data[4]}")
-                print(f"Address: {user_data[5]}")
-                print(f"City: {user_data[6]}")
-                print(f"State: {user_data[7]}")
-                print(f"Zip: {user_data[8]}")
+                print(f"Username: {user_data[1]}")
+                print(f"Email: {user_data[2]}")
+                print(f"First Name: {user_data[4]}")
+                print(f"Last Name: {user_data[5]}")
+                print(f"Address: {user_data[6]}")
+                print(f"City: {user_data[7]}")
+                print(f"State: {user_data[8]}")
+                print(f"Zip: {user_data[9]}")
+                
             else:
                 print("User not found.")
 
@@ -64,6 +67,7 @@ class User:
     
     def createAcc(self):
         if not self.loggedIn:
+            new_username = input("Enter your Username: ")
             new_email = input("Enter your email: ")
             new_password = input("Enter your password: ")
             new_first_name = input("Enter your first name: ")
@@ -74,8 +78,8 @@ class User:
             new_zip = input("Enter your zip code: ")
 
             conn = self.connectDB()
-            query = f"INSERT INTO {self.tableName} (Email, Password, FirstName, LastName, Address, City, State, Zip) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
-            conn.execute(query, (new_email, new_password, new_first_name, new_last_name, new_address, new_city, new_state, new_zip))
+            query = f"INSERT INTO {self.tableName} (Username, Email, Password, FirstName, LastName, Address, City, State, Zip) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            conn.execute(query, (new_username, new_email, new_password, new_first_name, new_last_name, new_address, new_city, new_state, new_zip))
             conn.commit()
 
             # Retrieve the last inserted row id (UserID)
