@@ -3,8 +3,15 @@ from inventory import Inventory
 from userClass import User
 from cart import Cart
 
+#instances of the classes
+Inventory = Inventory()
+User = User()
+Cart = Cart()
+
 
 #main
+
+
 if __name__ == "__main__":
     while True:
         print("\nMain Menu:")
