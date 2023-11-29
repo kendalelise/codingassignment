@@ -1,11 +1,8 @@
-import cart
-import inventory
-import userClass
-import connectTest
+import sqlite3
+from inventory import Inventory
+from userClass import User
+from cart import Cart
 
-cart = cart.Cart()
-inventory = inventory.Inventory()
-userClass = userClass.User()
 
 #main
 if __name__ == "__main__":
@@ -17,9 +14,9 @@ if __name__ == "__main__":
         choice = input("Enter your choice (1-3): ")
 
         if choice == "1":
-            userClass.login()
+            User.login()
         elif choice == "2":
-            userClass.createAcc()
+            User.createAcc()
         elif choice == "3":
             print("Exiting the program. Goodbye!")
             break
@@ -38,10 +35,10 @@ if __name__ == "__main__":
             choice = input("Enter your choice (1-5): ")
 
             if choice == "1":
-                userClass.logout()
+                User.logout()
                 break
             elif choice == "2":
-                userClass.viewAccInfo()
+                User.viewAccInfo()
             elif choice == "3":
                 # Inventory Information
                 while True:
@@ -77,13 +74,13 @@ if __name__ == "__main__":
                     if choice == "1":
                         break
                     elif choice == "2":
-                        cart.view_cart()
+                        Cart.view_cart()
                     elif choice == "3":
-                        cart.add_to_cart()
+                        Cart.add_to_cart()
                     elif choice == "4":
-                        cart.remove_from_cart()
+                        Cart.remove_from_cart()
                     elif choice == "5":
-                        cart.check_out()
+                        Cart.check_out()
                     else:
                         print("Invalid option. Please enter a valid option.")
                         continue
