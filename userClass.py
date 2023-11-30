@@ -45,8 +45,6 @@ class User:
             cursor = conn.execute(query, (self.userID,))
             user_data = cursor.fetchone()
 
-            print(f"Debug: self.userID = {self.userID}, user_data = {user_data}")  # Debug line
-
             if user_data:
                 print(f"Viewing account information for user {self.userID}:")
                 print(f"Username: {user_data[1]}")
@@ -89,9 +87,9 @@ class User:
             self.userID = cursor.fetchone()[0]
             self.loggedIn = True
 
-            print(f"Debug: new_email = {new_email}, self.userID = {self.userID}")  # Debug line
+            print(f"\nEmail = {new_email}, userID = {self.userID}")  # Debug line
 
-            print(f"Account created for {new_email} with UserID: {self.userID}")  # Include UserID in the output
+            print(f"Account has been created for {new_email} with UserID: {self.userID}")  # Include UserID in the output
 
             conn.close()
         else:
